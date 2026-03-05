@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, любимая!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Montserrat', sans-serif;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        /* Анимированный фон с цветами */
+        .flowers-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .flower {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 24px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        .card {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            animation: cardAppear 1s ease-out;
+        }
+        
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            background: linear-gradient(45deg, #f43b47, #ff6b6b, #f7b731);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        
+        /* Блок с именем */
+        .name-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(255, 240, 245, 0.3);
+            border-radius: 60px;
+        }
+        
+        .beloved-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #ff4d6d;
+            text-shadow: 2px 2px 4px rgba(255, 77, 109, 0.2);
+        }
+        
+        .heart-icon {
+            font-size: 2rem;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .image-container {
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .main-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: pulse 2s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .main-image:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .message {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #444;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 240, 245, 0.5);
+            border-radius: 20px;
+            border-left: 5px solid #ff6b6b;
+            font-style: italic;
+        }
+        
+        /* Кнопки */
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            background: linear-gradient(45deg, #f43b47, #ff6b6b);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(243, 59, 71, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid transparent;
+            min-width: 200px;
+        }
+        
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(243, 59, 71, 0.4);
+        }
+        
+        .button.surprise {
+            background: linear-gradient(45deg, #8e44ad, #9b59b6);
+        }
+        
+        .reason-box {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            font-size: 1.3rem;
+            color: #ff4d6d;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ff6b6b;
+        }
+        
+        /* Цветовой пикер */
+        .color-picker {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .color-picker label {
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        .color-picker input {
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 0;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Модальное окно для сюрприза */
+        .surprise-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .surprise-content {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            animation: scaleIn 0.3s ease-out;
+        }
+        
+        .surprise-content h2 {
+            color: #ff4d6d;
+            margin-bottom: 20px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+        }
+        
+        .photo-frame {
+            width: 250px;
+            height: 250px;
+            margin: 20px auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #ff9a9e;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .close-btn {
+            padding: 10px 30px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            background: #ff4d6d;
+            transform: scale(1.05);
+        }
+        
+        /* Музыкальная кнопка */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            padding: 15px 25px;
+            border-radius: 50px;
+            background: white;
+            border: none;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .music-btn:hover {
+            transform: scale(1.1);
+            background: #ff4d6d;
+            color: white;
+        }
+        
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .heart {
+            position: absolute;
+            color: rgba(255, 107, 107, 0.3);
+            font-size: 20px;
+            animation: heartFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes heartFloat {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        .date {
+            margin-top: 30px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.8); }
+            to { transform: scale(1); }
+        }
+        
+        .footer-note {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="flowers-bg" id="flowers"></div>
+    
+    <div class="card">
+        <h1 class="title">С 8 Марта!</h1>
+        <div class="subtitle">Международный женский день
+        ""
+        </div>
+        
+        <!-- Блок с именем (введи её имя!) -->
+        <div class="name-block">
+            <span class="heart-icon">❤️</span>
+            <h2 class="beloved-name" id="nameDisplay">Дмирка пупс</h2>
+            <span class="heart-icon">❤️</span>
+        </div>
+        
+        <div class="image-container">
+            <div class="main-image" onclick="showSurprise()" title="Нажми на меня!">
+                🌸🌷🌹
+            </div>
+        </div>
+        
+        <div class="message" id="greetingMessage">
+            Дорогая! Пусть этот день подарит море улыбок, тепла и нежности. Ты прекрасна!
+        </div>
+        
+        <!-- Блок с причинами -->
+        <div class="reason-box" id="reasonDisplay">
+            Нажми кнопку, чтобы узнать ❤️
+        </div>
+        
+        <div class="buttons">
+            <button class="button" onclick="changeGreeting()">
+                ✨ Новое пожелание
+            </button>
+            <button class="button surprise" onclick="showNextReason()">
+                💕 Почему ты лучшая
+            </button>
+        </div>
+        
+        <!-- Цветовой пикер -->
+        <div class="color-picker">
+            <label>Выбери свой цвет: </label>
+            <input type="color" id="themeColor" value="#ff6b6b" onchange="changeTheme(this.value)">
+        </div>
+        
+        <div class="date" id="currentDate"></div>
+        <div class="footer-note">Сделано специально для тебя Карелин дмитрием леле💝</div>
+    </div>
+    
+    <div class="hearts" id="hearts"></div>
+    
+    <!-- Музыкальная кнопка -->
+    <button class="music-btn" onclick="toggleMusic()">🎵 Включить музыку</button>
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Массив пожеланий
+        const greetings = [
+            "С 8 Марта! Желаю тебе весеннего настроения, цветов и улыбок!",
+            "Пусть каждый день будет наполнен счастьем, любовью и радостью!",
+            "Оставайся такой же прекрасной, нежной и удивительной!",
+            "Пусть сбываются мечты и исполняются желания!",
+            "Ты достойна самых лучших комплиментов и подарков!",
+            "Желаю тебе море позитива, океан любви и безграничного счастья!",
+            "Спасибо, что ты есть в моей жизни!",
+            "Ты делаешь этот мир ярче своей улыбкой!"
+        ];
+        
+        // Массив причин (ЗАПОЛНИ СВОИМИ!)
+        const reasons = [
+            "У тебя самая красивая улыбка на свете",
+            "Твой смех звучит как самая лучшая музыка",
+            "Ты делаешь этот мир лучше просто своим присутствием",
+            "С тобой каждый день - настоящий праздник",
+            "Ты веришь в меня даже тогда, когда я сам в себя не верю",
+            "Ты готовишь самые вкусные завтраки",
+            "Ты умеешь поддержать в трудную минуту",
+            "Ты самая заботливая и нежная",
+            "Ты всегда находишь слова, чтобы поднять настроение",
+            "Ты просто - Ты, и это самое лучшее!"
+        ];
+        
+        let reasonCount = 0;
+        let musicPlaying = false;
+        const audio = document.getElementById('bgMusic');
+        
+        function changeGreeting() {
+            const messageElement = document.getElementById('greetingMessage');
+            const randomIndex = Math.floor(Math.random() * greetings.length);
+            messageElement.textContent = greetings[randomIndex];
+            messageElement.style.animation = 'none';
+            messageElement.offsetHeight;
+            messageElement.style.animation = 'cardAppear 0.5s ease-out';
+        }
+        
+        function showNextReason() {
+            const reasonElement = document.getElementById('reasonDisplay');
+            reasonElement.textContent = reasons[reasonCount % reasons.length];
+            reasonCount++;
+            reasonElement.style.animation = 'none';
+            reasonElement.offsetHeight;
+            reasonElement.style.animation = 'fadeIn 0.5s';
+        }
+        
+        function changeTheme(color) {
+            document.querySelector('.message').style.borderLeftColor = color;
+            document.querySelectorAll('.button').forEach(btn => {
+                if(!btn.classList.contains('surprise')) {
+                    btn.style.background = `linear-gradient(45deg, ${color}, ${adjustBrightness(color, 20)})`;
+                }
+            });
+        }
+        
+        function adjustBrightness(hex, percent) {
+            // Простая функция для осветления цвета
+            return hex; // Для простоты оставим так
+        }
+        
+        function showSurprise() {
+            const surpriseModal = document.createElement('div');
+            surpriseModal.className = 'surprise-modal';
+            surpriseModal.innerHTML = `
+                <div class="surprise-content">
+                    <h2>Ты - моё вдохновение! 💕</h2>
+                    <div class="photo-frame">
+                        <img src="https://via.placeholder.com/300x300/ff9a9e/ffffff?text=Тут+могла+быть+твоя+фотка" alt="Любимая">
+                    </div>
+                    <p>Самая красивая, самая любимая, самая родная!</p>
+                    <p style="font-size: 2rem; margin: 20px 0;">💝 🌹 💝</p>
+                    <button class="close-btn" onclick="this.parentElement.parentElement.remove()">Закрыть</button>
+                </div>
+            `;
+            document.body.appendChild(surpriseModal);
+            
+            // Анимация появления
+            setTimeout(() => {
+                surpriseModal.style.opacity = '1';
+            }, 10);
+        }
+        
+        function toggleMusic() {
+            const btn = document.querySelector('.music-btn');
+            if (musicPlaying) {
+                audio.pause();
+                btn.textContent = '🎵 Включить музыку';
+            } else {
+                audio.play().catch(e => console.log('Автовоспроизведение заблокировано браузером'));
+                btn.textContent = '⏸ Выключить музыку';
+            }
+            musicPlaying = !musicPlaying;
+        }
+        
+        // Создание плавающих цветов
+        function createFlowers() {
+            const flowersContainer = document.getElementById('flowers');
+            const flowers = ['🌸', '🌷', '🌹', '🌺', '🌻', '🌼', '💐'];
+            
+            for (let i = 0; i < 25; i++) {
+                const flower = document.createElement('div');
+                flower.className = 'flower';
+                flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                flower.style.left = Math.random() * 100 + '%';
+                flower.style.top = Math.random() * 100 + '%';
+                flower.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                flower.style.animationDelay = Math.random() * 5 + 's';
+                flower.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                flowersContainer.appendChild(flower);
+            }
+        }
+        
+        // Создание сердечек
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heartsContainer.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }, 200);
+        }
+        
+        // Дата
+        function updateDate() {
+            const dateElement = document.getElementById('currentDate');
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            dateElement.textContent = now.toLocaleDateString('ru-RU', options);
+        }
+        
+        // Имя можно изменить прямо в коде выше (в блоке nameDisplay)
+        // Или добавить функцию для смены имени
+        
+        // Запуск всего
+        createFlowers();
+        createHearts();
+        updateDate();
+        
+        // Показываем первую причину автоматически
+        setTimeout(() => {
+            showNextReason();
+        }, 1000);
+    </script>
+</body>
+</html>
